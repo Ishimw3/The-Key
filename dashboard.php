@@ -22,7 +22,8 @@ include "header.php";
 
         <div class="container">
 
-
+            <h1 style="padding: 40px;">Bienvenue <span
+                    style="text-transform: capitalize"><?php echo $_SESSION['username']; ?></span></h1>
             <h1 style="padding: 40px;">Gestion du site :</h1>
 
 
@@ -50,6 +51,12 @@ include "header.php";
                     <i class="fa fa-briefcase"></i>
                     <p>Gestion des Foctions Occupés</p>
                 </a>
+
+                <a href="publications.php" class="service-action">
+                    <i class="fa fa-edit"></i>
+                    <p>Écrire une nouvelle publication</p>
+                </a>
+
 
             </div>
 

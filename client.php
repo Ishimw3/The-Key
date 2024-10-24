@@ -16,11 +16,12 @@ include "header.php";
                   <br>
                   <span class="subtitle">Nom du client Ou Entreprise:</span>
                   <br>
-                  <input type="text" id="nom" name="nom" pattern="[a-zA-Z0-9]+" required>
+                  <input type="text" id="nom" name="nom" pattern="[a-zA-Z\s]+"
+                  required>
                   <br>
                   <span class="subtitle">Adresse :</span>
                   <br>
-                  <input type="text" id="adresse" name="adresse" pattern="[a-zA-Z0-9]+" required>
+                  <input type="text" id="adresse" name="adresse" pattern="[a-zA-Z0-9\s]+" required>
                   <br>
                   <span class="subtitle">Nombre d'Employeés :</span>
                   <br>

@@ -6,7 +6,7 @@ function setActiveLink() {
 
   if (currentPage === 'index.php') {
       document.getElementById('3').classList.add('active');
-  } else if (currentPage === 'publica.php') {
+  } else if (currentPage === 'public.php') {
       document.getElementById('2').classList.add('active');
   } else if (currentPage === 'login.php') {
       document.getElementById('7').classList.add('active');

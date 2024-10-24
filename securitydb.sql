@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 24, 2024 at 06:10 AM
+-- Generation Time: Oct 24, 2024 at 02:39 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -84,9 +84,9 @@ CREATE TABLE `authentification` (
 
 CREATE TABLE `client` (
   `id_client` int(11) NOT NULL,
-  `nom_client` varchar(12) NOT NULL,
+  `nom_client` varchar(100) NOT NULL,
   `nombre_agent` int(8) NOT NULL,
-  `adresse` varchar(10) NOT NULL
+  `adresse` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
@@ -99,7 +99,11 @@ INSERT INTO `client` (`id_client`, `nom_client`, `nombre_agent`, `adresse`) VALU
 (8, 'isabwe beni ', 24, 'ruguru'),
 (10, 'ishimwe', 5, 'gasnyi'),
 (11, 'Ggggg', 2, 'gggggg'),
-(12, 'moi', 3, 'Gihosha');
+(12, 'moi', 3, 'Gihosha'),
+(16, 'Irumva', 1, 'Gihosha'),
+(17, 'Audi ishimwe', 2, 'Gihosha'),
+(18, 'Test', 3, 'Gihosha'),
+(19, 'Test User THis', 3, 'Kanyoni 1ere Avenue');
 
 -- --------------------------------------------------------
 
@@ -199,16 +203,18 @@ CREATE TABLE `publication` (
   `id_pub` int(11) NOT NULL,
   `date_pub` date NOT NULL,
   `titre` varchar(100) NOT NULL,
-  `article` text NOT NULL
+  `article` text NOT NULL,
+  `auteur` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `publication`
 --
 
-INSERT INTO `publication` (`id_pub`, `date_pub`, `titre`, `article`) VALUES
-(1, '2024-10-23', 'Nouveaux Agents', 'De nouvelles agents ont été acceuillis avec honneur dans notre société et ils seont à votre service pour toute vos services de securites.\r\nRestez avec nous pour de nouvelles actus en matieres de securité et de bien etre.'),
-(2, '2024-10-23', 'La nouvelle vague de bonheur.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem enim aperiam impedit possimus maiores minima totam reprehenderit nemo, doloribus temporibus quisquam doloremque culpa officiis quam corrupti earum. Asperiores, atque natus!');
+INSERT INTO `publication` (`id_pub`, `date_pub`, `titre`, `article`, `auteur`) VALUES
+(1, '2024-10-23', 'Nouveaux Agents', 'De nouvelles agents ont été acceuillis avec honneur dans notre société et ils seont à votre service pour toute vos services de securites.\r\nRestez avec nous pour de nouvelles actus en matieres de securité et de bien etre.', NULL),
+(2, '2024-10-23', 'La nouvelle vague de bonheur.', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem enim aperiam impedit possimus maiores minima totam reprehenderit nemo, doloribus temporibus quisquam doloremque culpa officiis quam corrupti earum. Asperiores, atque natus!', NULL),
+(3, '2024-10-24', 'La Sécurité : Un Enjeu Crucial de Notre Temps', 'Dans un monde en constante évolution, la sécurité occupe une place prépondérante dans nos vies quotidiennes. Que ce soit à la maison, au travail ou dans les espaces publics, la nécessité de se sentir en sécurité n’a jamais été aussi primordiale. La sécurité ne se limite pas simplement à la protection physique contre les intrusions; elle englobe également des aspects comme la sécurité numérique, la sécurité au travail, et même la sécurité émotionnelle.\r\n\r\nLa Sécurité Physique\r\nLa sécurité physique reste une priorité pour de nombreuses personnes. Que ce soit à travers l\'installation de systèmes de surveillance, d\'alarmes ou de serrures de haute sécurité, il est essentiel de se protéger contre les menaces extérieures. Les entreprises spécialisées comme KeySec offrent des solutions sur mesure pour répondre à ces besoins, en proposant des services de surveillance 24/7 et de gardiennage.\r\n\r\nLa Sécurité Numérique\r\nAvec l\'essor de l\'ère numérique, la sécurité informatique est devenue un enjeu majeur. Les cyberattaques se multiplient et peuvent avoir des conséquences dévastatrices pour les individus et les entreprises. Il est crucial de protéger ses données personnelles et professionnelles à travers des mots de passe robustes, des logiciels antivirus, et des systèmes de sauvegarde réguliers.\r\n\r\nLa Sécurité au Travail\r\nLa sécurité au travail est un aspect souvent négligé, mais tout aussi important. Un environnement de travail sécurisé est essentiel pour garantir le bien-être des employés et la productivité. Cela inclut la mise en place de protocoles de sécurité, la formation des employés aux risques potentiels, et la fourniture d\'équipements de protection individuelle.\r\n\r\nLa Sécurité Emotionnelle\r\nEnfin, la sécurité émotionnelle joue un rôle crucial dans notre bien-être général. Se sentir en sécurité dans ses relations personnelles et professionnelles est fondamental pour une vie épanouie. Cela passe par la création d\'un environnement où chacun se sent respecté et valorisé.\r\n\r\nEn résumé, la sécurité est un concept multidimensionnel qui va bien au-delà de la simple protection physique. C\'est un enjeu vital dans notre société moderne, et il est essentiel de rester vigilant et proactif pour garantir notre bien-être et celui de nos proches. Des entreprises comme KeySec se tiennent prêtes à offrir des solutions complètes et personnalisées pour répondre à tous vos besoins en matière de sécurité.\r\n\r\n', 2);
 
 -- --------------------------------------------------------
 
@@ -229,7 +235,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `created_at`) VALUES
-(1, 'ishimwe', '$2y$10$Spsy38V9bR5dNKOBqcfG4ePEMoA0NmcprXjI40Woa470XsS8OIB5W', 'ayesishimwe@gmail.com', '2024-10-23 23:20:41');
+(1, 'ishimwe', '$2y$10$Spsy38V9bR5dNKOBqcfG4ePEMoA0NmcprXjI40Woa470XsS8OIB5W', 'ayesishimwe@gmail.com', '2024-10-23 23:20:41'),
+(2, 'irumva', '$2y$10$mHo4cT8pRAXVxeVW1dz7D.EO7lciPuZOcftvXvtjh6MA1dsfPe5UW', 'this@this.com', '2024-10-24 12:13:48');
 
 --
 -- Indexes for dumped tables
@@ -291,7 +298,8 @@ ALTER TABLE `post`
 -- Indexes for table `publication`
 --
 ALTER TABLE `publication`
-  ADD PRIMARY KEY (`id_pub`);
+  ADD PRIMARY KEY (`id_pub`),
+  ADD KEY `fk_auteur` (`auteur`);
 
 --
 -- Indexes for table `users`
@@ -327,7 +335,7 @@ ALTER TABLE `authentification`
 -- AUTO_INCREMENT for table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_client` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -357,13 +365,13 @@ ALTER TABLE `post`
 -- AUTO_INCREMENT for table `publication`
 --
 ALTER TABLE `publication`
-  MODIFY `id_pub` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pub` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -387,6 +395,12 @@ ALTER TABLE `agent`
 --
 ALTER TABLE `contrat`
   ADD CONSTRAINT `fk_client` FOREIGN KEY (`client_id`) REFERENCES `client` (`id_client`);
+
+--
+-- Constraints for table `publication`
+--
+ALTER TABLE `publication`
+  ADD CONSTRAINT `fk_auteur` FOREIGN KEY (`auteur`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
